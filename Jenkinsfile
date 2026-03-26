@@ -1,13 +1,11 @@
 pipeline {
     agent any
 
-    stages {
+    tools {
+        nodejs 'NodeJS'
+    }
 
-        stage('Clone Repo') {
-            steps {
-                git url: 'https://github.com/ansarkmemon/todo-app-testing-with-jest.git'
-            }
-        }
+    stages {
 
         stage('Install Dependencies') {
             steps {

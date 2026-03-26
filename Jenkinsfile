@@ -21,9 +21,12 @@ pipeline {
 
         stage('Build App') {
             steps {
-                sh 'npm run build'
-            }
-        }
+                sh '''
+                export NODE_OPTIONS=--openssl-legacy-provider
+                npm run build
+                '''
+    }
+}
 
         stage('Deploy to Dev') {
             steps {

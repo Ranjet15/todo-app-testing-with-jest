@@ -31,9 +31,10 @@ pipeline {
         stage('Deploy to Dev') {
             steps {
                 sh '''
-                docker build -t todo-dev .
-                docker rm -f todo-dev-container || true
-                docker run -d -p 3001:3000 --name todo-dev-container todo-dev
+                    docker stop react-app-dev || true
+                    docker rm react-app-dev || true
+                    docker build --no-cache -t react-app:dev .
+                    docker run -d --name react-app-dev -p 3001:80 react-app:dev
                 '''
             }
         }
